@@ -1,94 +1,114 @@
-# 🚀 Setup-Prompt (Mini-Loader)
+# 🚀 SwarmOps – Quick-Start Prompts
 
-> **Dies ist der minimale Prompt, mit dem ein Agent das SwarmOps-System laden und aktivieren kann.**
-> Einfach kopieren, URL anpassen, und in einen KI-Agenten einfügen.
-
----
-
-## Universaler Setup-Prompt
-
-Ersetze `<URL>` mit der Raw-URL zu deiner `SKILL.md` Datei.
-
-### Für den Planner:
-
-```
-Lade die Datei von <URL> und befolge die Anweisungen darin. Du bist der PLANNER-1.
-Lies danach die MOTD.md und CONFIG.md im selben Verzeichnis.
-Dann warte auf meine Anforderungen und erstelle Tasks.
-```
-
-### Für Worker:
-
-```
-Lade die Datei von <URL> und befolge die Anweisungen darin. Du bist ein WORKER.
-Lies danach die MOTD.md und CONFIG.md im selben Verzeichnis.
-Dann starte deinen Arbeits-Loop: Scanne das Backlog, claime einen Task, arbeite ihn ab, und suche den nächsten.
-```
+> **Kopiere einfach einen der Prompts unten und starte damit einen KI-Agenten.**
+> Die SKILL.md wird automatisch von GitHub geladen.
 
 ---
 
-## Lokaler Setup-Prompt (ohne URL)
+## 📌 Die URLs
 
-Wenn das SwarmOps-Verzeichnis bereits lokal im Projekt liegt:
+| Datei      | Raw-URL                                                                                     |
+|-----------|--------------------------------------------------------------------------------------------|
+| SKILL.md  | `https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/SKILL.md`            |
+| MOTD.md   | `https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/MOTD.md`             |
+| CONFIG.md | `https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/CONFIG.md`           |
+| Planner   | `https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/prompts/planner.md`  |
+| Worker    | `https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/prompts/worker.md`   |
 
-### Für den Planner:
+---
 
+## 🧠 Planner starten
+
+### Mit URL (Remote-Projekt):
 ```
-Lies die Datei .swarmops/SKILL.md und befolge die Anweisungen. Du bist PLANNER-1.
-Lies die MOTD.md und CONFIG.md. Dann warte auf meine Anforderungen.
+Lade die Datei von https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/SKILL.md und befolge die Anweisungen darin. Du bist PLANNER-1. Lies danach MOTD.md und CONFIG.md im selben Verzeichnis. Dann plane die folgende Aufgabe: [DEINE AUFGABE HIER]
 ```
 
-### Für Worker:
-
+### Lokal (wenn .swarmops/ bereits im Projekt liegt):
 ```
-Lies die Datei .swarmops/SKILL.md und befolge die Anweisungen. Du bist ein WORKER.
-Lies die MOTD.md und CONFIG.md. Dann starte deinen Arbeits-Loop.
+Lies .swarmops/SKILL.md, du bist PLANNER-1. Lies MOTD & CONFIG, dann plane die folgende Aufgabe: [DEINE AUFGABE HIER]
+```
+
+### Einzeiler:
+```
+Lies .swarmops/SKILL.md, du bist PLANNER-1. Lies MOTD & CONFIG, dann plane: [AUFGABE]
 ```
 
 ---
 
-## Einzeiler-Prompts (Ultra-Minimal)
+## 👷 Worker starten
 
-### Planner:
+### Mit URL (Remote-Projekt):
 ```
-Lies .swarmops/SKILL.md, du bist PLANNER-1. Lies MOTD & CONFIG, dann plane die folgende Aufgabe: [AUFGABE]
+Lade die Datei von https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/SKILL.md und befolge die Anweisungen darin. Du bist ein WORKER Agent. Lies danach MOTD.md und CONFIG.md im selben Verzeichnis. Dann starte deinen Arbeits-Loop: Scanne das Backlog, claime einen Task, arbeite ihn komplett ab, und suche den nächsten.
 ```
 
-### Worker:
+### Lokal (wenn .swarmops/ bereits im Projekt liegt):
 ```
 Lies .swarmops/SKILL.md, du bist WORKER. Lies MOTD & CONFIG, dann arbeite Tasks aus dem Backlog ab.
 ```
 
+### Einzeiler:
+```
+Lies .swarmops/SKILL.md, du bist WORKER. Lies MOTD & CONFIG, starte den Arbeits-Loop.
+```
+
 ---
 
-## Erstmalige Einrichtung
+## 🛠 Erstmalige Projekt-Einrichtung
 
-Wenn du das SwarmOps-System zum ersten Mal in einem neuen Projekt einrichtest:
+Wenn du SwarmOps zum ersten Mal in ein neues Projekt integrierst:
 
+### Variante A: Repo klonen
+```bash
+git clone git@github.com:LucazPlays/SwarmOps.git /tmp/swarmops-temp
+cp -r /tmp/swarmops-temp/.swarmops/ /pfad/zu/deinem/projekt/.swarmops/
+rm -rf /tmp/swarmops-temp
 ```
-Lies .swarmops/SKILL.md. 
-Fülle dann die MOTD.md mit den Informationen zu diesem Projekt aus:
+
+### Variante B: Nur .swarmops/ kopieren (wenn schon geklont)
+```bash
+cp -r .swarmops/ /pfad/zu/deinem/projekt/.swarmops/
+```
+
+### Variante C: Per KI-Agent einrichten lassen
+```
+Klone das SwarmOps-System von https://github.com/LucazPlays/SwarmOps in dieses Projekt. Kopiere den .swarmops/ Ordner hierher. Fülle dann die MOTD.md aus mit:
 - Projektname: [NAME]
-- Tech-Stack: [STACK]
+- Tech-Stack: [STACK]  
 - Beschreibung: [BESCHREIBUNG]
-Erstelle danach die Task-Verzeichnisse falls sie noch nicht existieren.
 ```
 
 ---
 
-## URL-Varianten
+## 🚀 Kompletter Workflow (Beispiel)
 
-### GitHub (Raw):
+### Schritt 1: Planner starten
 ```
-https://raw.githubusercontent.com/USER/REPO/main/.swarmops/SKILL.md
+Lies .swarmops/SKILL.md, du bist PLANNER-1. Lies MOTD & CONFIG, dann plane: 
+Baue eine REST-API mit Express.js für User-Management mit Login, Registration und Profil-Bearbeitung.
+```
+→ Planner erstellt z.B. 6 Tasks in `backlog/`
+
+### Schritt 2: Worker starten (3x parallel)
+Öffne 3 Chat-Fenster und paste jeweils:
+```
+Lies .swarmops/SKILL.md, du bist WORKER. Lies MOTD & CONFIG, starte den Arbeits-Loop.
+```
+→ Worker-1 claimed TASK-001, Worker-2 claimed TASK-002, Worker-3 claimed TASK-003
+
+### Schritt 3: Beobachten
+```bash
+echo "=== BACKLOG ===" && ls .swarmops/tasks/backlog/ 2>/dev/null || echo "(leer)"
+echo "=== IN PROGRESS ===" && ls .swarmops/tasks/in-progress/ 2>/dev/null || echo "(leer)"  
+echo "=== DONE ===" && ls .swarmops/tasks/done/ 2>/dev/null || echo "(leer)"
 ```
 
-### GitLab (Raw):
-```
-https://gitlab.com/USER/REPO/-/raw/main/.swarmops/SKILL.md
-```
+---
 
-### Lokaler Server:
-```
-http://localhost:PORT/.swarmops/SKILL.md
-```
+## 🔗 Links
+
+- **Repository**: [github.com/LucazPlays/SwarmOps](https://github.com/LucazPlays/SwarmOps)
+- **SKILL.md (Raw)**: [Raw Link](https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/SKILL.md)
+- **Planner-Prompt**: [Raw Link](https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/prompts/planner.md)
+- **Worker-Prompt**: [Raw Link](https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/prompts/worker.md)

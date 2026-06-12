@@ -5,6 +5,43 @@
 
 ---
 
+## ⚡ Installer-Prompt (Einmal-Setup)
+
+> **Diesen EINEN Prompt in einen beliebigen KI-Agenten pasten – er installiert SwarmOps komplett im aktuellen Projekt.**
+
+```
+Du bist ein Setup-Agent. Deine einzige Aufgabe: Installiere das SwarmOps Multi-Agent-System in diesem Projekt.
+
+Schritt 1 – Dateien herunterladen:
+Lade folgende Dateien von GitHub herunter und speichere sie exakt unter den angegebenen Pfaden relativ zum Projekt-Root:
+
+- https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/SKILL.md → .swarmops/SKILL.md
+- https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/MOTD.md → .swarmops/MOTD.md
+- https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/CONFIG.md → .swarmops/CONFIG.md
+- https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/prompts/planner.md → .swarmops/prompts/planner.md
+- https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/prompts/worker.md → .swarmops/prompts/worker.md
+- https://raw.githubusercontent.com/LucazPlays/SwarmOps/main/.swarmops/prompts/setup.md → .swarmops/prompts/setup.md
+
+Schritt 2 – Verzeichnisse erstellen:
+Erstelle diese Verzeichnisse (falls sie nicht existieren):
+- .swarmops/tasks/backlog/
+- .swarmops/tasks/in-progress/
+- .swarmops/tasks/review/
+- .swarmops/tasks/done/
+
+Schritt 3 – MOTD ausfüllen:
+Analysiere das aktuelle Projekt (Dateien, package.json, README, etc.) und fülle die MOTD.md automatisch aus:
+- Projektname (aus package.json, Verzeichnisname, oder README)
+- Tech-Stack (erkenne Sprachen, Frameworks, Tools)
+- Architektur-Überblick (Ordnerstruktur)
+- Coding-Standards (aus Linter-Configs, .editorconfig, etc.)
+
+Schritt 4 – Bestätigung:
+Gib eine Zusammenfassung aus, was installiert wurde, und zeige die Prompts für Planner und Worker an.
+```
+
+---
+
 ## 📌 Die URLs
 
 | Datei      | Raw-URL                                                                                     |
@@ -55,49 +92,26 @@ Lies .swarmops/SKILL.md, du bist WORKER. Lies MOTD & CONFIG, starte den Arbeits-
 
 ---
 
-## 🛠 Erstmalige Projekt-Einrichtung
-
-Wenn du SwarmOps zum ersten Mal in ein neues Projekt integrierst:
-
-### Variante A: Repo klonen
-```bash
-git clone git@github.com:LucazPlays/SwarmOps.git /tmp/swarmops-temp
-cp -r /tmp/swarmops-temp/.swarmops/ /pfad/zu/deinem/projekt/.swarmops/
-rm -rf /tmp/swarmops-temp
-```
-
-### Variante B: Nur .swarmops/ kopieren (wenn schon geklont)
-```bash
-cp -r .swarmops/ /pfad/zu/deinem/projekt/.swarmops/
-```
-
-### Variante C: Per KI-Agent einrichten lassen
-```
-Klone das SwarmOps-System von https://github.com/LucazPlays/SwarmOps in dieses Projekt. Kopiere den .swarmops/ Ordner hierher. Fülle dann die MOTD.md aus mit:
-- Projektname: [NAME]
-- Tech-Stack: [STACK]  
-- Beschreibung: [BESCHREIBUNG]
-```
-
----
-
 ## 🚀 Kompletter Workflow (Beispiel)
 
-### Schritt 1: Planner starten
+### Schritt 1: SwarmOps installieren
+Paste den **Installer-Prompt** oben in einen KI-Agenten. Er richtet alles automatisch ein.
+
+### Schritt 2: Planner starten
 ```
 Lies .swarmops/SKILL.md, du bist PLANNER-1. Lies MOTD & CONFIG, dann plane: 
 Baue eine REST-API mit Express.js für User-Management mit Login, Registration und Profil-Bearbeitung.
 ```
 → Planner erstellt z.B. 6 Tasks in `backlog/`
 
-### Schritt 2: Worker starten (3x parallel)
+### Schritt 3: Worker starten (3x parallel)
 Öffne 3 Chat-Fenster und paste jeweils:
 ```
 Lies .swarmops/SKILL.md, du bist WORKER. Lies MOTD & CONFIG, starte den Arbeits-Loop.
 ```
 → Worker-1 claimed TASK-001, Worker-2 claimed TASK-002, Worker-3 claimed TASK-003
 
-### Schritt 3: Beobachten
+### Schritt 4: Beobachten
 ```bash
 echo "=== BACKLOG ===" && ls .swarmops/tasks/backlog/ 2>/dev/null || echo "(leer)"
 echo "=== IN PROGRESS ===" && ls .swarmops/tasks/in-progress/ 2>/dev/null || echo "(leer)"  

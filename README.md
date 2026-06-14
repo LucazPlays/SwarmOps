@@ -127,10 +127,10 @@ SwarmOps funktioniert mit jedem KI-Agenten, der:
 - Markdown versteht
 
 **Getestet mit:**
-- Antigravity 2.0
-- Google Open Code
-- Google Cloud Code
+- Open Code
+- Anthrophic Claude Code
 - OpenAI Codex
+- Google Antigravity 2.0
 
 ---
 
